@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @author yerunjie
  */
 @RestController
+@RequestMapping("/v1/api")
 public class HelloController {
-    @RequestMapping("/hello")
-    public String changePassword() {
-        return "agent_reset_password";
-    }
+
+  @RequestMapping("/hello")
+  public String hello() {
+    return "hello";
+  }
+  
 }
