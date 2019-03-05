@@ -1,44 +1,16 @@
 package com.ecnu.pizzaexpress.model;
 
+import lombok.Data;
+
+@Data
 public class Material {
 
-  private Integer id;
+  private int id;
 
   private String name;
 
-  private Integer threshold;
+  private int threshold;
 
-  private Byte status;
+  private int status;
 
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name == null ? null : name.trim();
-  }
-
-  public Integer getThreshold() {
-    return threshold;
-  }
-
-  public void setThreshold(Integer threshold) {
-    this.threshold = threshold;
-  }
-
-  public Byte getStatus() {
-    return status;
-  }
-
-  public void setStatus(Byte status) {
-    this.status = status;
-  }
 }

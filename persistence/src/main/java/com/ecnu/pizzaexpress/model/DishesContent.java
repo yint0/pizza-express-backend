@@ -1,34 +1,13 @@
 package com.ecnu.pizzaexpress.model;
 
+import lombok.Data;
+
+@Data
 public class DishesContent {
 
-  private Integer dishesId;
+  private int dishesId;
 
-  private Integer materialId;
+  private int materialId;
 
-  private Double useCount;
-
-  public Integer getDishesId() {
-    return dishesId;
-  }
-
-  public void setDishesId(Integer dishesId) {
-    this.dishesId = dishesId;
-  }
-
-  public Integer getMaterialId() {
-    return materialId;
-  }
-
-  public void setMaterialId(Integer materialId) {
-    this.materialId = materialId;
-  }
-
-  public Double getUseCount() {
-    return useCount;
-  }
-
-  public void setUseCount(Double useCount) {
-    this.useCount = useCount;
-  }
+  private double useCount;
 }
