@@ -1,0 +1,4 @@
+mybatis:
+  mapperLocations: classpath:mybatis/mapper/*.xml
+  typeAliasesPackage: com.ecnu.pizzaexpress.model
+  configLocation: classpath:mybatis/mybatis-config.xml
