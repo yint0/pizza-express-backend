@@ -28,3 +28,4 @@
 
 mybatis_generator.xml
 target
+application-dev.yml
