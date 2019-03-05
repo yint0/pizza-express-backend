@@ -9,8 +9,4 @@ public class UserServiceImpl implements IUserService {
         return "";
     }
 
-    @Override
-    public String signup() {
-        return "";
-    }
 }
