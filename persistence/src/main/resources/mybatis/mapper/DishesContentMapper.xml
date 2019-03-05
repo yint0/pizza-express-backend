@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecnu.pizzaexpress.mapper.DishesContentMapper">
+  <resultMap id="BaseResultMap" type="com.ecnu.pizzaexpress.model.DishesContent">
+    <id column="dishes_id" jdbcType="INTEGER" property="dishesId"/>
+    <id column="material_id" jdbcType="INTEGER" property="materialId"/>
+    <result column="use_count" jdbcType="DOUBLE" property="useCount"/>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete
+    from dishes_content
+    where dishes_id = #{dishesId,jdbcType=INTEGER}
+      and material_id = #{materialId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ecnu.pizzaexpress.model.DishesContent">
+    insert into dishes_content (dishes_id, material_id, use_count)
+    values (#{dishesId,jdbcType=INTEGER}, #{materialId,jdbcType=INTEGER},
+            #{useCount,jdbcType=DOUBLE})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ecnu.pizzaexpress.model.DishesContent">
+    update dishes_content
+    set use_count = #{useCount,jdbcType=DOUBLE}
+    where dishes_id = #{dishesId,jdbcType=INTEGER}
+      and material_id = #{materialId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select dishes_id, material_id, use_count
+    from dishes_content
+    where dishes_id = #{dishesId,jdbcType=INTEGER}
+      and material_id = #{materialId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select dishes_id, material_id, use_count
+    from dishes_content
+  </select>
+</mapper>
