@@ -1,0 +1,23 @@
+mybatis:
+  mapperLocations: classpath:mybatis/mapper/*.xml
+  typeAliasesPackage: com.ecnu.pizzaexpress.model
+  configLocation: classpath:mybatis/mybatis-config.xml
+
+aes:
+  iv: unforethoughtful
+  key: perineorrhaphies
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://rm-uf6800rm8lwzo1z0r.mysql.rds.aliyuncs.com:3306/pizza_express_test?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: RJKFSJ2019abc
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+      maximum-pool-size: 10
+      connection-test-query: SELECT 1
