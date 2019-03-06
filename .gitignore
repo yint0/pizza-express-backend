@@ -29,3 +29,4 @@
 mybatis_generator.xml
 target
 application-dev.yml
+test-report
