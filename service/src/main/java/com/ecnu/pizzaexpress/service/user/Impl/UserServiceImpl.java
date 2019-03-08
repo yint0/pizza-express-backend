@@ -2,6 +2,7 @@ package com.ecnu.pizzaexpress.service.user.Impl;
 
 import com.ecnu.pizzaexpress.mapper.UserMapper;
 import com.ecnu.pizzaexpress.model.User;
+import com.ecnu.pizzaexpress.service.dishes.IDishesService;
 import com.ecnu.pizzaexpress.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,6 @@ public class UserServiceImpl implements IUserService {
 
   @Autowired
   UserMapper userMapper;
-
  /* @Override
   public int login(int userId, String password) {
     User user = userMapper.selectByPrimaryKey(userId);
