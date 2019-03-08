@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecnu.pizzaexpress.mapper.MaterialLogMapper">
+  <resultMap id="BaseResultMap" type="com.ecnu.pizzaexpress.model.MaterialLog">
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <result column="admin_id" jdbcType="INTEGER" property="adminId"/>
+    <result column="material_id" jdbcType="INTEGER" property="materialId"/>
+    <result column="factory_id" jdbcType="INTEGER" property="factoryId"/>
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime"/>
+    <result column="content" jdbcType="LONGVARCHAR" property="content"/>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete
+    from material_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ecnu.pizzaexpress.model.MaterialLog"
+    useGeneratedKeys="true">
+    insert into material_log (admin_id, material_id, factory_id,
+                              operate_time, content)
+    values (#{adminId,jdbcType=INTEGER}, #{materialId,jdbcType=INTEGER},
+            #{factoryId,jdbcType=INTEGER},
+            #{operateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ecnu.pizzaexpress.model.MaterialLog">
+    update material_log
+    set admin_id     = #{adminId,jdbcType=INTEGER},
+        material_id  = #{materialId,jdbcType=INTEGER},
+        factory_id   = #{factoryId,jdbcType=INTEGER},
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+        content      = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, admin_id, material_id, factory_id, operate_time, content
+    from material_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, admin_id, material_id, factory_id, operate_time, content
+    from material_log
+  </select>
+</mapper>

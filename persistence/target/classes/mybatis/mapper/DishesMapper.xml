@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecnu.pizzaexpress.mapper.DishesMapper">
+  <resultMap id="BaseResultMap" type="com.ecnu.pizzaexpress.model.Dishes">
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="description" jdbcType="VARCHAR" property="description"/>
+    <result column="cost_price" jdbcType="DECIMAL" property="costPrice"/>
+    <result column="sale_price" jdbcType="DECIMAL" property="salePrice"/>
+    <result column="status" jdbcType="TINYINT" property="status"/>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete
+    from dishes
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ecnu.pizzaexpress.model.Dishes"
+    useGeneratedKeys="true">
+    insert into dishes (name, description, cost_price,
+                        sale_price, status)
+    values (#{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+            #{costPrice,jdbcType=DECIMAL},
+            #{salePrice,jdbcType=DECIMAL}, #{status,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ecnu.pizzaexpress.model.Dishes">
+    update dishes
+    set name        = #{name,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        cost_price  = #{costPrice,jdbcType=DECIMAL},
+        sale_price  = #{salePrice,jdbcType=DECIMAL},
+        status      = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, description, cost_price, sale_price, status
+    from dishes
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, description, cost_price, sale_price, status
+    from dishes
+  </select>
+</mapper>

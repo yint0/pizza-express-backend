@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecnu.pizzaexpress.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.ecnu.pizzaexpress.model.User">
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <result column="account" jdbcType="VARCHAR" property="account"/>
+    <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+    <result column="qq" jdbcType="VARCHAR" property="qq"/>
+    <result column="wechat" jdbcType="VARCHAR" property="wechat"/>
+    <result column="password" jdbcType="VARCHAR" property="password"/>
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+    <result column="birthday" jdbcType="DATE" property="birthday"/>
+    <result column="address" jdbcType="LONGVARCHAR" property="address"/>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ecnu.pizzaexpress.model.User"
+    useGeneratedKeys="true">
+    insert into user (account, telephone, qq,
+                      wechat, password, nick_name,
+                      birthday, address)
+    values (#{account,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR},
+            #{wechat,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
+            #{birthday,jdbcType=DATE}, #{address,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ecnu.pizzaexpress.model.User">
+    update user
+    set account   = #{account,jdbcType=VARCHAR},
+        telephone = #{telephone,jdbcType=VARCHAR},
+        qq        = #{qq,jdbcType=VARCHAR},
+        wechat    = #{wechat,jdbcType=VARCHAR},
+        password  = #{password,jdbcType=VARCHAR},
+        nick_name = #{nickName,jdbcType=VARCHAR},
+        birthday  = #{birthday,jdbcType=DATE},
+        address   = #{address,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id,
+           account,
+           telephone,
+           qq,
+           wechat,
+           password,
+           nick_name,
+           birthday,
+           address
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id,
+           account,
+           telephone,
+           qq,
+           wechat,
+           password,
+           nick_name,
+           birthday,
+           address
+    from user
+  </select>
+</mapper>

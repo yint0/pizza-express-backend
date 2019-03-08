@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecnu.pizzaexpress.mapper.DeliveryClerkMapper">
+  <resultMap id="BaseResultMap" type="com.ecnu.pizzaexpress.model.DeliveryClerk">
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+    <result column="factory_id" jdbcType="INTEGER" property="factoryId"/>
+    <result column="status" jdbcType="TINYINT" property="status"/>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete
+    from delivery_clerk
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ecnu.pizzaexpress.model.DeliveryClerk"
+    useGeneratedKeys="true">
+    insert into delivery_clerk (name, telephone, factory_id,
+                                status)
+    values (#{name,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{factoryId,jdbcType=INTEGER},
+            #{status,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ecnu.pizzaexpress.model.DeliveryClerk">
+    update delivery_clerk
+    set name       = #{name,jdbcType=VARCHAR},
+        telephone  = #{telephone,jdbcType=VARCHAR},
+        factory_id = #{factoryId,jdbcType=INTEGER},
+        status     = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, telephone, factory_id, status
+    from delivery_clerk
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, telephone, factory_id, status
+    from delivery_clerk
+  </select>
+</mapper>

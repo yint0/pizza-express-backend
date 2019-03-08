@@ -23,4 +23,12 @@ public class User {
   private Date birthday;
 
   private String address;
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
 }

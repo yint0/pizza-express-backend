@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecnu.pizzaexpress.mapper.OrderLogMapper">
+  <resultMap id="BaseResultMap" type="com.ecnu.pizzaexpress.model.OrderLog">
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <result column="order_id" jdbcType="INTEGER" property="orderId"/>
+    <result column="operator_type" jdbcType="VARCHAR" property="operatorType"/>
+    <result column="operator_id" jdbcType="INTEGER" property="operatorId"/>
+    <result column="content_from" jdbcType="VARCHAR" property="contentFrom"/>
+    <result column="content_to" jdbcType="VARCHAR" property="contentTo"/>
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime"/>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete
+    from order_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ecnu.pizzaexpress.model.OrderLog"
+    useGeneratedKeys="true">
+    insert into order_log (order_id, operator_type, operator_id,
+                           content_from, content_to, operate_time)
+    values (#{orderId,jdbcType=INTEGER}, #{operatorType,jdbcType=VARCHAR},
+            #{operatorId,jdbcType=INTEGER},
+            #{contentFrom,jdbcType=VARCHAR}, #{contentTo,jdbcType=VARCHAR},
+            #{operateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ecnu.pizzaexpress.model.OrderLog">
+    update order_log
+    set order_id      = #{orderId,jdbcType=INTEGER},
+        operator_type = #{operatorType,jdbcType=VARCHAR},
+        operator_id   = #{operatorId,jdbcType=INTEGER},
+        content_from  = #{contentFrom,jdbcType=VARCHAR},
+        content_to    = #{contentTo,jdbcType=VARCHAR},
+        operate_time  = #{operateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, order_id, operator_type, operator_id, content_from, content_to, operate_time
+    from order_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, order_id, operator_type, operator_id, content_from, content_to, operate_time
+    from order_log
+  </select>
+</mapper>
