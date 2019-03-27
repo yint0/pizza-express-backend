@@ -1,5 +1,6 @@
 package com.ecnu.pizzaexpress.model;
 
+import com.ecnu.pizzaexpress.constants.OrderStatus;
 import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
@@ -11,9 +12,9 @@ public class Order {
 
   private String uuid;
 
-  private Integer userId;
+  private int userId;
 
-  private int status;
+  private OrderStatus status;
 
   private BigDecimal costPrice;
 
@@ -21,7 +22,7 @@ public class Order {
 
   private int factoryId;
 
-  private int deliveryClerkId;
+  private int deliverClerkId;
 
   private String remark;
 
@@ -29,6 +30,6 @@ public class Order {
 
   private String address;
 
-  private Date deliveryTime;
+  private Date deliverTime;
 
 }

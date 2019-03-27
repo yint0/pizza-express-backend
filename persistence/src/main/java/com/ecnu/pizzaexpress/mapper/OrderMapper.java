@@ -14,4 +14,6 @@ public interface OrderMapper {
   List<Order> selectAll();
 
   int updateByPrimaryKey(Order record);
+
+  int updateOrderStatus(Order order);
 }

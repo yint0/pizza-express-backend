@@ -33,4 +33,11 @@
     select material_id, factory_id, count
     from inventory
   </select>
+  <update id="addInventory" parameterType="com.ecnu.pizzaexpress.request.AddInventoryRequest">
+    update inventory
+    set count = count + #{addCount}
+    where material_id = #{materialId,jdbcType=INTEGER}
+      and factory_id = #{factoryId,jdbcType=INTEGER}
+      and count = #{count,jdbcType=DOUBLE}
+  </update>
 </mapper>

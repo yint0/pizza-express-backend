@@ -1,5 +1,6 @@
 package com.ecnu.pizzaexpress.model;
 
+import com.ecnu.pizzaexpress.constants.DishesStatus;
 import java.math.BigDecimal;
 import lombok.Data;
 
@@ -16,6 +17,6 @@ public class Dishes {
 
   private BigDecimal salePrice;
 
-  private int status;
+  private DishesStatus status;
 
 }

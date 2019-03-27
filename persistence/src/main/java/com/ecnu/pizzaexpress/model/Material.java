@@ -1,5 +1,6 @@
 package com.ecnu.pizzaexpress.model;
 
+import com.ecnu.pizzaexpress.constants.MaterialStatus;
 import lombok.Data;
 
 @Data
@@ -11,6 +12,6 @@ public class Material {
 
   private int threshold;
 
-  private int status;
+  private MaterialStatus status;
 
 }

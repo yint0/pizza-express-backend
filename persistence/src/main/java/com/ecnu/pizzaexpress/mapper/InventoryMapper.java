@@ -1,6 +1,7 @@
 package com.ecnu.pizzaexpress.mapper;
 
 import com.ecnu.pizzaexpress.model.Inventory;
+import com.ecnu.pizzaexpress.request.AddInventoryRequest;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -17,4 +18,6 @@ public interface InventoryMapper {
   List<Inventory> selectAll();
 
   int updateByPrimaryKey(Inventory record);
+
+  int addInventory(AddInventoryRequest request);
 }

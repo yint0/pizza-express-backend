@@ -11,7 +11,7 @@ public class DeliveryClerk {
 
   private String telephone;
 
-  private Integer factoryId;
+  private int factoryId;
 
   private int status;
 }

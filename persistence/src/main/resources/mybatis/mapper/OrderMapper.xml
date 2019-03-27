@@ -6,47 +6,49 @@
     <id column="id" jdbcType="INTEGER" property="id"/>
     <result column="uuid" jdbcType="VARCHAR" property="uuid"/>
     <result column="user_id" jdbcType="INTEGER" property="userId"/>
-    <result column="status" jdbcType="TINYINT" property="status"/>
+    <result typeHandler="com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler" column="status"
+      javaType="com.ecnu.pizzaexpress.constants.OrderStatus"
+      jdbcType="TINYINT"
+      property="status"/>
     <result column="cost_price" jdbcType="DECIMAL" property="costPrice"/>
     <result column="sale_price" jdbcType="DECIMAL" property="salePrice"/>
     <result column="factory_id" jdbcType="INTEGER" property="factoryId"/>
-    <result column="delivery_clerk_id" jdbcType="INTEGER" property="deliveryClerkId"/>
+    <result column="deliver_clerk_id" jdbcType="INTEGER" property="deliverClerkId"/>
     <result column="remark" jdbcType="VARCHAR" property="remark"/>
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     <result column="address" jdbcType="VARCHAR" property="address"/>
-    <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime"/>
+    <result column="deliver_time" jdbcType="TIMESTAMP" property="deliverTime"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete
     from `order`
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ecnu.pizzaexpress.model.Order"
+  <insert id="insert" keyColumn="id" keyProperty="id"
+    parameterType="com.ecnu.pizzaexpress.model.Order"
     useGeneratedKeys="true">
     insert into `order` (uuid, user_id, status,
                          cost_price, sale_price, factory_id,
-                         delivery_clerk_id, remark, create_time,
-                         address, delivery_time)
-    values (#{uuid,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{status,jdbcType=TINYINT},
+                         deliver_clerk_id, remark, create_time,
+                         address, deliver_time)
+    values (#{uuid,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},
+            #{status,typeHandler=com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler},
             #{costPrice,jdbcType=DECIMAL}, #{salePrice,jdbcType=DECIMAL},
             #{factoryId,jdbcType=INTEGER},
-            #{deliveryClerkId,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR},
+            #{deliverClerkId,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR},
             #{createTime,jdbcType=TIMESTAMP},
-            #{address,jdbcType=VARCHAR}, #{deliveryTime,jdbcType=TIMESTAMP})
+            #{address,jdbcType=VARCHAR}, #{deliverTime,jdbcType=TIMESTAMP})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.ecnu.pizzaexpress.model.Order">
     update `order`
-    set uuid              = #{uuid,jdbcType=VARCHAR},
-        user_id           = #{userId,jdbcType=INTEGER},
-        status            = #{status,jdbcType=TINYINT},
-        cost_price        = #{costPrice,jdbcType=DECIMAL},
-        sale_price        = #{salePrice,jdbcType=DECIMAL},
-        factory_id        = #{factoryId,jdbcType=INTEGER},
-        delivery_clerk_id = #{deliveryClerkId,jdbcType=INTEGER},
-        remark            = #{remark,jdbcType=VARCHAR},
-        create_time       = #{createTime,jdbcType=TIMESTAMP},
-        address           = #{address,jdbcType=VARCHAR},
-        delivery_time     = #{deliveryTime,jdbcType=TIMESTAMP}
+    set cost_price       = #{costPrice,jdbcType=DECIMAL},
+        sale_price       = #{salePrice,jdbcType=DECIMAL},
+        factory_id       = #{factoryId,jdbcType=INTEGER},
+        deliver_clerk_id = #{deliverClerkId,jdbcType=INTEGER},
+        remark           = #{remark,jdbcType=VARCHAR},
+        create_time      = #{createTime,jdbcType=TIMESTAMP},
+        address          = #{address,jdbcType=VARCHAR},
+        deliver_time     = #{deliverTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -57,11 +59,11 @@
            cost_price,
            sale_price,
            factory_id,
-           delivery_clerk_id,
+           deliver_clerk_id,
            remark,
            create_time,
            address,
-           delivery_time
+           deliver_time
     from `order`
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -73,11 +75,16 @@
            cost_price,
            sale_price,
            factory_id,
-           delivery_clerk_id,
+           deliver_clerk_id,
            remark,
            create_time,
            address,
-           delivery_time
+           deliver_time
     from `order`
   </select>
+  <update id="updateOrderStatus" parameterType="com.ecnu.pizzaexpress.model.Order">
+    update `order`
+    set status = #{status,typeHandler=com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

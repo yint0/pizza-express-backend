@@ -1,5 +1,7 @@
 package com.ecnu.pizzaexpress.model;
 
+import com.ecnu.pizzaexpress.constants.FactoryStatus;
+import java.time.LocalTime;
 import java.util.Date;
 import lombok.Data;
 
@@ -14,13 +16,13 @@ public class Factory {
 
   private String telephone;
 
-  private Date openTime;
+  private LocalTime openTime;
 
-  private Date closeTime;
+  private LocalTime closeTime;
 
   private int maxQuantity;
 
-  private int status;
+  private FactoryStatus status;
 
   private String address;
 }

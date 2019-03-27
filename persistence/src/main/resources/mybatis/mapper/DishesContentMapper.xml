@@ -7,6 +7,16 @@
     <id column="material_id" jdbcType="INTEGER" property="materialId"/>
     <result column="use_count" jdbcType="DOUBLE" property="useCount"/>
   </resultMap>
+  <resultMap id="MaterialWithCountResultMap" type="com.ecnu.pizzaexpress.model.MaterialWithCount">
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="threshold" jdbcType="INTEGER" property="threshold"/>
+    <result typeHandler="com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler" column="status"
+      javaType="com.ecnu.pizzaexpress.constants.MaterialStatus"
+      jdbcType="TINYINT"
+      property="status"/>
+    <result column="use_count" jdbcType="DOUBLE" property="useCount"/>
+  </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="map">
     delete
     from dishes_content
@@ -33,5 +43,11 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select dishes_id, material_id, use_count
     from dishes_content
+  </select>
+  <select id="findByDishesId" resultMap="MaterialWithCountResultMap">
+    select material.*, use_count
+    from dishes_content
+           left join material on dishes_content.material_id = material.id
+    where dishes_id = #{dishesId}
   </select>
 </mapper>

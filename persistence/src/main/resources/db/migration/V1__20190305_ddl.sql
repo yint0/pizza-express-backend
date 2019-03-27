@@ -162,15 +162,15 @@ CREATE TABLE `order`
   `cost_price`        decimal(10, 2)                                           NOT NULL DEFAULT 0.00 COMMENT '成本',
   `sale_price`        decimal(10, 2)                                           NOT NULL COMMENT '售价',
   `factory_id`        int(11)                                                  NOT NULL COMMENT '工厂id',
-  `delivery_clerk_id` int(11)                                                  NOT NULL COMMENT '配送员id',
+  `deliver_clerk_id`  int(11)                                                  NOT NULL COMMENT '配送员id',
   `remark`            varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '评价',
   `create_time`       datetime(0)                                              NOT NULL COMMENT '创建时间',
   `address`           varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '配送地址',
-  `delivery_time`     datetime(0)                                                       DEFAULT NULL COMMENT '送达时间',
+  `deliver_time`     datetime(0)                                                       DEFAULT NULL COMMENT '送达时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id` (`user_id`) USING BTREE,
   INDEX `factory_id` (`factory_id`) USING BTREE,
-  INDEX `delivery_clerk_id` (`delivery_clerk_id`) USING BTREE
+  INDEX `delivery_clerk_id` (`deliver_clerk_id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   CHARACTER SET = utf8

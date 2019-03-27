@@ -8,6 +8,8 @@ public interface OrderDishesMapper {
 
   int deleteByPrimaryKey(@Param("orderId") Integer orderId, @Param("dishesId") Integer dishesId);
 
+  int deleteByOrderId(@Param("orderId") Integer orderId);
+
   int insert(OrderDishes record);
 
   OrderDishes selectByPrimaryKey(@Param("orderId") Integer orderId,

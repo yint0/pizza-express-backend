@@ -8,28 +8,31 @@
     <result column="description" jdbcType="VARCHAR" property="description"/>
     <result column="cost_price" jdbcType="DECIMAL" property="costPrice"/>
     <result column="sale_price" jdbcType="DECIMAL" property="salePrice"/>
-    <result column="status" jdbcType="TINYINT" property="status"/>
+    <result typeHandler="com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler" column="status"
+      javaType="com.ecnu.pizzaexpress.constants.DishesStatus"
+      jdbcType="TINYINT"
+      property="status"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete
     from dishes
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ecnu.pizzaexpress.model.Dishes"
+  <insert id="insert" keyColumn="id" keyProperty="id"
+    parameterType="com.ecnu.pizzaexpress.model.Dishes"
     useGeneratedKeys="true">
     insert into dishes (name, description, cost_price,
                         sale_price, status)
     values (#{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
             #{costPrice,jdbcType=DECIMAL},
-            #{salePrice,jdbcType=DECIMAL}, #{status,jdbcType=TINYINT})
+            #{salePrice,jdbcType=DECIMAL}, #{status,typeHandler=com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.ecnu.pizzaexpress.model.Dishes">
     update dishes
     set name        = #{name,jdbcType=VARCHAR},
         description = #{description,jdbcType=VARCHAR},
         cost_price  = #{costPrice,jdbcType=DECIMAL},
-        sale_price  = #{salePrice,jdbcType=DECIMAL},
-        status      = #{status,jdbcType=TINYINT}
+        sale_price  = #{salePrice,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

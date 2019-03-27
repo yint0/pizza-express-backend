@@ -6,23 +6,29 @@
     <id column="id" jdbcType="INTEGER" property="id"/>
     <result column="name" jdbcType="VARCHAR" property="name"/>
     <result column="threshold" jdbcType="INTEGER" property="threshold"/>
-    <result column="status" jdbcType="TINYINT" property="status"/>
+    <result typeHandler="com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler" column="status"
+      javaType="com.ecnu.pizzaexpress.constants.MaterialStatus"
+      jdbcType="TINYINT"
+      property="status"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete
     from material
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ecnu.pizzaexpress.model.Material"
+  <insert id="insert" keyColumn="id" keyProperty="id"
+    parameterType="com.ecnu.pizzaexpress.model.Material"
     useGeneratedKeys="true">
     insert into material (name, threshold, status)
-    values (#{name,jdbcType=VARCHAR}, #{threshold,jdbcType=INTEGER}, #{status,jdbcType=TINYINT})
+    values (#{name,jdbcType=VARCHAR},
+            #{threshold,jdbcType=INTEGER},
+            #{status,typeHandler=com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.ecnu.pizzaexpress.model.Material">
     update material
     set name      = #{name,jdbcType=VARCHAR},
         threshold = #{threshold,jdbcType=INTEGER},
-        status    = #{status,jdbcType=TINYINT}
+        status    = #{status,typeHandler=com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

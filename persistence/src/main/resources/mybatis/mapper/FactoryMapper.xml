@@ -10,7 +10,10 @@
     <result column="open_time" jdbcType="TIME" property="openTime"/>
     <result column="close_time" jdbcType="TIME" property="closeTime"/>
     <result column="max_quantity" jdbcType="INTEGER" property="maxQuantity"/>
-    <result column="status" jdbcType="TINYINT" property="status"/>
+    <result typeHandler="com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler" column="status"
+      javaType="com.ecnu.pizzaexpress.constants.FactoryStatus"
+      jdbcType="TINYINT"
+      property="status"/>
     <result column="address" jdbcType="LONGVARCHAR" property="address"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -18,7 +21,8 @@
     from factory
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ecnu.pizzaexpress.model.Factory"
+  <insert id="insert" keyColumn="id" keyProperty="id"
+    parameterType="com.ecnu.pizzaexpress.model.Factory"
     useGeneratedKeys="true">
 
     insert into factory (name, head_portrait, telephone,
@@ -27,7 +31,8 @@
     values (#{name,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR},
             #{telephone,jdbcType=VARCHAR},
             #{openTime,jdbcType=TIME}, #{closeTime,jdbcType=TIME}, #{maxQuantity,jdbcType=INTEGER},
-            #{status,jdbcType=TINYINT}, #{address,jdbcType=LONGVARCHAR})
+            #{status,typeHandler=com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler},
+            #{address,jdbcType=LONGVARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.ecnu.pizzaexpress.model.Factory">
     update factory
@@ -37,7 +42,6 @@
         open_time     = #{openTime,jdbcType=TIME},
         close_time    = #{closeTime,jdbcType=TIME},
         max_quantity  = #{maxQuantity,jdbcType=INTEGER},
-        status        = #{status,jdbcType=TINYINT},
         address       = #{address,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
