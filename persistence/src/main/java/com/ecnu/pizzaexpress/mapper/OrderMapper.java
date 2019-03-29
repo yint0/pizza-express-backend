@@ -1,6 +1,7 @@
 package com.ecnu.pizzaexpress.mapper;
 
 import com.ecnu.pizzaexpress.model.Order;
+import com.ecnu.pizzaexpress.request.SearchOrderRequest;
 import java.util.List;
 
 public interface OrderMapper {
@@ -13,7 +14,11 @@ public interface OrderMapper {
 
   List<Order> selectAll();
 
-  int updateByPrimaryKey(Order record);
+  List<Order> findByRequest(SearchOrderRequest request);
+
+  int updateOrderInfo(Order record);
+
+  int updateDeliverInfo(Order record);
 
   int updateOrderStatus(Order order);
 }

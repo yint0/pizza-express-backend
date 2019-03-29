@@ -1,9 +1,10 @@
 package com.ecnu.pizzaexpress.model;
 
+import com.ecnu.pizzaexpress.constants.DeliverClerkStatus;
 import lombok.Data;
 
 @Data
-public class DeliveryClerk {
+public class DeliverClerk {
 
   private int id;
 
@@ -13,5 +14,5 @@ public class DeliveryClerk {
 
   private int factoryId;
 
-  private int status;
+  private DeliverClerkStatus status;
 }

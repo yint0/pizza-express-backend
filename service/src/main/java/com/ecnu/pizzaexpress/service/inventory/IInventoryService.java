@@ -14,4 +14,6 @@ public interface IInventoryService {
   boolean deductInventory(Inventory inventory);
 
   boolean updateInventory(Inventory inventory);
+
+  boolean checkInventory(Inventory inventory);
 }

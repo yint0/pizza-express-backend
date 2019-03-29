@@ -4,6 +4,9 @@ import com.ecnu.pizzaexpress.constants.FactoryStatus;
 import com.ecnu.pizzaexpress.mapper.FactoryMapper;
 import com.ecnu.pizzaexpress.model.Factory;
 import com.ecnu.pizzaexpress.service.base.BaseServiceImpl;
+import com.ecnu.pizzaexpress.service.deliver.impl.baidumap.BaiduMapApi;
+import com.ecnu.pizzaexpress.service.deliver.impl.baidumap.response.GeocoderResponse;
+import com.ecnu.pizzaexpress.service.deliver.impl.baidumap.response.Location;
 import com.ecnu.pizzaexpress.service.factory.IFactoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,9 +22,13 @@ public class FactoryServiceImpl extends BaseServiceImpl implements IFactoryServi
   @Autowired
   private FactoryMapper factoryMapper;
 
+  @Autowired
+  private BaiduMapApi baiduMapApi;
+
   @Override
   public Factory create(Factory factory) {
     factory.setStatus(FactoryStatus.ONLINE);
+    resetAddress(factory);
     factoryMapper.insert(factory);
     return factory;
   }
@@ -34,7 +41,15 @@ public class FactoryServiceImpl extends BaseServiceImpl implements IFactoryServi
 
   @Override
   public boolean update(Factory factory) {
+    resetAddress(factory);
     factoryMapper.updateByPrimaryKey(factory);
     return true;
+  }
+
+  private void resetAddress(Factory factory) {
+    GeocoderResponse geocoder = baiduMapApi.geocoder(factory.getAddress());
+    Location location = geocoder.getResult().getLocation();
+    factory.setLng(location.getLng());
+    factory.setLat(location.getLat());
   }
 }

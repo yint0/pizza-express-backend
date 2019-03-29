@@ -34,7 +34,7 @@ public class UserController extends BaseController {
   }
 
   @RequestMapping("/login")
-  public LoginResponse login(User request) {
+  public LoginResponse login(@RequestBody LoginRequest request) {
     User user = userService.findByAccount(request.getAccount());
     if (user == null) {
       throw new RuntimeException();
@@ -45,6 +45,7 @@ public class UserController extends BaseController {
     String token = tokenService.generateToken(Role.User, user.getId());
     LoginResponse response = new LoginResponse();
     response.setToken(token);
+    addCookie("token", token);
     return response;
   }
 

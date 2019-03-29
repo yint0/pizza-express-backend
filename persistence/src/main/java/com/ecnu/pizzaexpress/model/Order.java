@@ -32,4 +32,6 @@ public class Order {
 
   private Date deliverTime;
 
+  private String detail;
+
 }

@@ -7,6 +7,11 @@
     <id column="dishes_id" jdbcType="INTEGER" property="dishesId"/>
     <result column="count" jdbcType="INTEGER" property="count"/>
   </resultMap>
+  <resultMap id="DishesWithCountResultMap"
+    extends="com.ecnu.pizzaexpress.mapper.DishesMapper.BaseResultMap"
+    type="com.ecnu.pizzaexpress.model.DishesWithCount">
+    <result column="count" jdbcType="INTEGER" property="count"/>
+  </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="map">
     delete
     from order_dishes
@@ -37,5 +42,11 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select order_id, dishes_id, count
     from order_dishes
+  </select>
+  <select id="findByOrderId" resultMap="DishesWithCountResultMap">
+    select dishes.*, order_dishes.count
+    from order_dishes
+           left join dishes on order_dishes.dishes_id = dishes.id
+    where order_id = #{orderId}
   </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.ecnu.pizzaexpress.service.dishes;
 
 import com.ecnu.pizzaexpress.model.Dishes;
+import com.ecnu.pizzaexpress.request.SearchDishesRequest;
 import java.util.List;
 
 /**
@@ -17,4 +18,6 @@ public interface IDishesService {
   boolean updateDishes(DishesWithContent dishesWithContent);
 
   List<Dishes> findByIds(List<Integer> ids);
+
+  List<Dishes> findByRequest(SearchDishesRequest request);
 }

@@ -1,5 +1,6 @@
 package com.ecnu.pizzaexpress.mapper;
 
+import com.ecnu.pizzaexpress.model.DishesWithCount;
 import com.ecnu.pizzaexpress.model.OrderDishes;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -18,4 +19,6 @@ public interface OrderDishesMapper {
   List<OrderDishes> selectAll();
 
   int updateByPrimaryKey(OrderDishes record);
+
+  List<DishesWithCount> findByOrderId(@Param("orderId") Integer orderId);
 }

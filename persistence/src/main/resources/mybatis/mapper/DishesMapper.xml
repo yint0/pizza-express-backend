@@ -6,6 +6,7 @@
     <id column="id" jdbcType="INTEGER" property="id"/>
     <result column="name" jdbcType="VARCHAR" property="name"/>
     <result column="description" jdbcType="VARCHAR" property="description"/>
+    <result column="url" jdbcType="VARCHAR" property="url"/>
     <result column="cost_price" jdbcType="DECIMAL" property="costPrice"/>
     <result column="sale_price" jdbcType="DECIMAL" property="salePrice"/>
     <result typeHandler="com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler" column="status"
@@ -22,26 +23,31 @@
     parameterType="com.ecnu.pizzaexpress.model.Dishes"
     useGeneratedKeys="true">
     insert into dishes (name, description, cost_price,
-                        sale_price, status)
+                        sale_price, status, type_id, type_name, url)
     values (#{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
             #{costPrice,jdbcType=DECIMAL},
-            #{salePrice,jdbcType=DECIMAL}, #{status,typeHandler=com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler})
+            #{salePrice,jdbcType=DECIMAL},
+            #{status,typeHandler=com.ecnu.pizzaexpress.typehandler.IntValueEnumTypeHandler}
+             , #{typeId}, #{typeName}, #{url})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.ecnu.pizzaexpress.model.Dishes">
     update dishes
     set name        = #{name,jdbcType=VARCHAR},
         description = #{description,jdbcType=VARCHAR},
+        type_id     = #{typeId},
+        type_name   = #{typeName},
+        url         = #{url},
         cost_price  = #{costPrice,jdbcType=DECIMAL},
         sale_price  = #{salePrice,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, name, description, cost_price, sale_price, status
+    select *
     from dishes
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, name, description, cost_price, sale_price, status
+    select *
     from dishes
   </select>
 </mapper>

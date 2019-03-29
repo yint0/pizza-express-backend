@@ -19,4 +19,10 @@ public class Dishes {
 
   private DishesStatus status;
 
+  private int typeId;
+
+  private String typeName;
+
+  private String url;
+
 }

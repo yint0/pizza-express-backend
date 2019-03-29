@@ -2,7 +2,6 @@ package com.ecnu.pizzaexpress.model;
 
 import com.ecnu.pizzaexpress.constants.FactoryStatus;
 import java.time.LocalTime;
-import java.util.Date;
 import lombok.Data;
 
 @Data
@@ -25,4 +24,8 @@ public class Factory {
   private FactoryStatus status;
 
   private String address;
+
+  private double lng;
+
+  private double lat;
 }

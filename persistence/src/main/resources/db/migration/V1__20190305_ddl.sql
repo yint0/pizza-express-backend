@@ -19,10 +19,10 @@ CREATE TABLE `admin`
   ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for delivery_clerk
+-- Table structure for deliver_clerk
 -- ----------------------------
-DROP TABLE IF EXISTS `delivery_clerk`;
-CREATE TABLE `delivery_clerk`
+DROP TABLE IF EXISTS `deliver_clerk`;
+CREATE TABLE `deliver_clerk`
 (
   `id`         int(11)                                                 NOT NULL AUTO_INCREMENT,
   `name`       varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '姓名',
@@ -170,7 +170,7 @@ CREATE TABLE `order`
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id` (`user_id`) USING BTREE,
   INDEX `factory_id` (`factory_id`) USING BTREE,
-  INDEX `delivery_clerk_id` (`deliver_clerk_id`) USING BTREE
+  INDEX `deliver_clerk_id` (`deliver_clerk_id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   CHARACTER SET = utf8

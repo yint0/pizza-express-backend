@@ -65,6 +65,17 @@ public class InventoryServiceImpl extends BaseServiceImpl implements IInventoryS
 
   @Override
   @Transactional
+  public boolean checkInventory(Inventory inventory) {
+    Inventory old = inventoryMapper
+        .selectByPrimaryKey(inventory.getMaterialId(), inventory.getFactoryId());
+    if (old == null) {
+      return false;
+    }
+    return old.getCount() >= inventory.getCount();
+  }
+
+  @Override
+  @Transactional
   public boolean updateInventory(Inventory inventory) {
     inventoryMapper.deleteByPrimaryKey(inventory.getMaterialId(), inventory.getFactoryId());
     inventoryMapper.insert(inventory);
