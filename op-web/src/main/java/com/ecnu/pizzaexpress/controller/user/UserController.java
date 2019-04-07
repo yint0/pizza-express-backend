@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -34,7 +35,7 @@ public class UserController extends BaseController {
   }
 
   @RequestMapping("/login")
-  public LoginResponse login(@RequestBody LoginRequest request) {
+  public LoginResponse login(@RequestParam LoginRequest request) {
     User user = userService.findByAccount(request.getAccount());
     if (user == null) {
       throw new RuntimeException();
@@ -63,4 +64,26 @@ public class UserController extends BaseController {
     response.setToken(token);
     return response;
   }
+
+  @RequestMapping("/getUserInfo")
+  @Authentication({Role.User})
+  public User getUserInfo() {
+    int userId = getToken().getId();
+    User user = getUserById(userId);
+    user.setPassword(null);
+    return user;
+  }
+
+  @RequestMapping("/modifyUserInfo")
+  public int modifyUserInfo(@RequestBody User request) {
+    int userId = getToken().getId();
+    User user = getUserById(userId);
+    user.setNickName(request.getNickName());
+    user.setAddress(request.getAddress());
+    user.setPassword(request.getPassword());
+    user.setTelephone(request.getTelephone());
+    userService.modifyUserInfo(user);
+    return 1;
+  }
+
 }
