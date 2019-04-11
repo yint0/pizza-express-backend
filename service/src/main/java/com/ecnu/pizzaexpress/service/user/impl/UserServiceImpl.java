@@ -27,4 +27,10 @@ public class UserServiceImpl extends BaseServiceImpl implements IUserService {
   public User findByAccount(String account) {
     return userMapper.findByAccount(account);
   }
+
+  @Override
+  public int modifyUserInfo(User user) {
+    userMapper.updateByPrimaryKey(user);
+    return 1;
+  }
 }

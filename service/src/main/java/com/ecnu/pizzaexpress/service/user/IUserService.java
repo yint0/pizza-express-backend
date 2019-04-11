@@ -12,4 +12,6 @@ public interface IUserService {
   User findById(int id);
 
   User findByAccount(String account);
+
+  int modifyUserInfo(User user);
 }
